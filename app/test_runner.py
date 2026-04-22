@@ -3,7 +3,7 @@ import sys
 
 def run_tests(repo_path):
     result = subprocess.run(
-        [sys.executable, "-m", "pytest"],
+        [sys.executable, "-m", "pytest", "tests"],
         capture_output=True,
         text=True,
         cwd=repo_path
@@ -11,6 +11,9 @@ def run_tests(repo_path):
 
     print("STDOUT:\n", result.stdout)
     print("STDERR:\n", result.stderr)
-    print("RETURN CODE:", result.returncode)
 
-    return result.returncode == 0
+    return {
+        "success": result.returncode == 0,
+        "output": result.stdout,
+        "error": result.stderr
+    }

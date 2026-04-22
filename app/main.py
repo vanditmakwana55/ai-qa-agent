@@ -64,14 +64,16 @@ def analyze(payload: dict):
         apply_fix(file_path, result.get("fix_code", code))
 
         # 🧪 Step 6: Run Tests on FIXED CODE
-        tests_passed = run_tests("temp_repo")
+        test_result = run_tests("temp_repo")
 
-        if not tests_passed:
+        if not test_result["success"]:
             cleanup()
             return {
-                "status": "failed",
-                "message": "Tests failed on AI fix",
-                "jira_ticket": issue_key
+            "status": "failed",
+            "message": "Tests failed on AI fix",
+            "jira_ticket": issue_key,
+            "test_output": test_result["output"],
+            "test_error": test_result["error"]
             }
 
         # 🚀 Step 7: Create PR
