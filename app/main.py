@@ -10,7 +10,7 @@ from repo_manager import clone_repo, apply_fix, cleanup
 app = FastAPI()
 
 # 🔗 Your GitHub repo URL
-REPO_URL = "https://github.com/vanditmakwana55/demo.git"
+REPO_URL = "https://github.com/vanditmakwana55/ai-qa-agent.git"
 
 
 # ✅ Clean Gemini response (remove ```json)
