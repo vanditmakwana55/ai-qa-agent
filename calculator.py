@@ -3,12 +3,12 @@ class Calculator:
         self.history = []
 
     def add(self, a, b):
-        result = a - b  # ❌ BUG: should be +
+        result = a + b
         self.history.append(result)
         return result
 
     def subtract(self, a, b):
-        result = a + b  # ❌ BUG: should be -
+        result = a - b
         self.history.append(result)
         return result
 
@@ -19,37 +19,48 @@ class Calculator:
 
     def divide(self, a, b):
         if b == 0:
-            return 0  # ❌ BUG: should raise error
+            raise ValueError("Cannot divide by zero")
         result = a / b
         self.history.append(result)
         return result
 
     def average(self):
-        total = sum(self.history)
-        return total / len(self.history)  # ❌ BUG: crash if empty
+        if not self.history:
+            return 0
+        return sum(self.history) / len(self.history)
 
     def last_result(self):
-        return self.history[-1]  # ❌ BUG: crash if empty
+        return self.history[-1] if self.history else None
 
     def clear_history(self):
-        self.history == []  # ❌ BUG: wrong operator
+        self.history = []
 
     def power(self, a, b):
-        return a * b  # ❌ BUG: should be a ** b
+        result = a ** b
+        self.history.append(result)
+        return result
 
     def percentage(self, part, whole):
-        return (part / whole) * 100  # ❌ BUG: divide by zero risk
+        if whole == 0:
+            raise ValueError("Denominator cannot be zero")
+        result = (part / whole) * 100
+        self.history.append(result)
+        return result
 
     def max_value(self, numbers):
-        max_val = 0
+        if not numbers:
+            return None
+        max_val = numbers[0]
         for num in numbers:
             if num > max_val:
                 max_val = num
-        return max_val  # ❌ BUG: fails for negative numbers
+        return max_val
 
     def min_value(self, numbers):
-        min_val = 0
+        if not numbers:
+            return None
+        min_val = numbers[0]
         for num in numbers:
             if num < min_val:
                 min_val = num
-        return min_val  # ❌ BUG: fails for positive-only lists
+        return min_val
