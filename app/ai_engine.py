@@ -10,17 +10,26 @@ model = genai.GenerativeModel("gemini-flash-latest")
 
 def analyze_code(code: str):
     prompt = f"""
-    Analyze the following code.
+    Analyze the following Python code and identify bugs.
 
-    1. Find bugs
-    2. Suggest fix
-    3. Return STRICT JSON:
+    Return ONLY valid JSON (no markdown).
 
+    Format:
     {{
-        "bug_found": true/false,
-        "summary": "...",
-        "description": "...",
-        "fix_code": "..."
+    "bug_found": true,
+    "summary": "Short title of bug",
+    "issues": [
+        "Issue 1",
+        "Issue 2"
+    ],
+    "steps": [
+        "Step 1",
+        "Step 2"
+    ],
+    "expected": "Expected behavior",
+    "actual": "Actual behavior",
+    "impact": "Impact of bug",
+    "fix_code": "fixed code"
     }}
 
     Code:

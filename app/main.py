@@ -54,7 +54,7 @@ def analyze(payload: dict):
         # 🐞 Step 3: Create Jira Ticket
         issue_key = create_jira_ticket(
             summary=result.get("summary", "AI detected bug"),
-            description=result.get("description", "No description provided")
+            description=result
         )
 
         # 📥 Step 4: Clone Repo
