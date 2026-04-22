@@ -1,6 +1,5 @@
 import subprocess
 import sys
-import os
 
 def run_tests(repo_path):
     result = subprocess.run(
@@ -10,7 +9,8 @@ def run_tests(repo_path):
         cwd=repo_path
     )
 
-    print("STDOUT:", result.stdout)
-    print("STDERR:", result.stderr)
+    print("STDOUT:\n", result.stdout)
+    print("STDERR:\n", result.stderr)
+    print("RETURN CODE:", result.returncode)
 
     return result.returncode == 0
