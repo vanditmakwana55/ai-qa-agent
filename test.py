@@ -1,2 +1,1 @@
-def add(a, b):
-    return a - b   # ❌ intentionally wrong (bug)
+def add(a, b): return a + b
